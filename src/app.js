@@ -17,23 +17,35 @@ window.onload = function() {
   let list = [];
 
   function generateString() {
-    for (let i = 0; i < pronoun.length; i++) {
-      for (let a = 0; a < adj.length; a++) {
-        for (let n = 0; n < adj.length; n++) {
-          for (let e = 0; e < ext.length; e++) {
-            list.push(pronoun[i] + adj[a] + noun[n] + ext[e]);
-          }
-        }
-      }
-    }
+    pronoun.forEach(elementOfPronoun => {
+      adj.forEach(elementOfAdj => {
+        noun.forEach(elementOfNoun => {
+          ext.forEach(elementOfExt => {
+            list.push(
+              elementOfPronoun + elementOfAdj + elementOfNoun + elementOfExt
+            );
+          });
+        });
+      });
+    });
+
+    // for (let i = 0; i < pronoun.length; i++) {
+    //   for (let a = 0; a < adj.length; a++) {
+    //     for (let n = 0; n < noun.length; n++) {
+    //       for (let e = 0; e < ext.length; e++) {
+    //         list.push(pronoun[i] + adj[a] + noun[n] + ext[e]);
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   generateString();
 
-  for (let e = 0; e < list.length; e++) {
+  list.forEach(elementOfList => {
     let li = document.createElement("li");
-    let text = document.createTextNode(list[e]);
+    let text = document.createTextNode(elementOfList);
     li.appendChild(text);
     document.getElementById("listado").appendChild(li);
-  }
+  });
 };
